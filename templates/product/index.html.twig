@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4 mb-4">{{ titulo }}</h1>
+    <a href="{{ path('add_product') }}" class="btn btn-primary mb-4">+ Adicionar</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Produto</th>
+                <th>Imagem</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Ingredientes</th>
+                <th>Modo de preparação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produto in produtos %}
+            <tr>
+                <td>{{ produto.id }}</td>
+                <td>{{ produto.name }}</td>
+                <td>{{ produto.image.id }}</td>
+                <td>{{ produto.price }}€</td>
+                <td>{{ produto.category.name }}</td>
+                <td>{{ produto.ingredients.description }}</td>
+                <td>{{ produto.receitas.passo1 }} ...</td>
+                <td>
+                    <a href="{{ path('edit_product', {id: produto.id}) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ path('delete_product', {id: produto.id}) }}" class="btn btn-primary">Apagar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4 mb-4">{{ titulo }}</h1>
+    <a href="{{ path('add_ingredients') }}" class="btn btn-primary mb-4">+ Adicionar</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Ingredientes</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ingredient in ingredients %}
+            <tr>
+                <td>{{ ingredient.id }}</td>
+                <td>{{ ingredient.name }}</td>
+                <td>{{ ingredient.description }}</td>
+                <td>
+                    <a href="{{ path('edit_ingredients', {id: ingredient.id}) }}" class="btn btn-primary">Editar</a>
+                    <a href="{{ path('delete_ingredients', {id: ingredient.id}) }}"  class="btn btn-primary">Apagar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
+
